@@ -1,0 +1,93 @@
+@echo off
+title HCS Tuneup
+
+:menu
+cls
+echo HCS Tuneup
+echo 1. Install Firefox
+echo 2. Install Adobe Acrobat
+echo 3. Install Malwarebytes
+echo 4. Install CCleaner
+echo 5. Install VLC
+echo 6. Install Open Office
+echo 7. Download Aero Admin
+echo 8. Create 'HCS Tools' Folder
+echo 9. Move Programs to 'HCS Tools'
+echo 10. Rename Aero Admin
+echo 11. Create Restore Point
+echo 12. Exit
+
+set /p choice=Enter your choice:
+
+if "%choice%"=="" goto menu
+if %choice%==1 (
+    powershell -Command "winget install Mozilla.Firefox"
+    pause
+    goto menu
+)
+if %choice%==2 (
+    powershell -Command "winget install Adobe.AdobeAcrobatReader"
+    pause
+    goto menu
+)
+if %choice%==3 (
+    powershell -Command "winget install Malwarebytes.Malwarebytes"
+    pause
+    goto menu
+)
+if %choice%==4 (
+    powershell -Command "winget install Piriform.CCleaner"
+    pause
+    goto menu
+)
+if %choice%==5 (
+    powershell -Command "winget install VideoLAN.VLC"
+    pause
+    goto menu
+)
+if %choice%==6 (
+    set /p installOO=Do you want to install Open Office? (yes/no): 
+    if /i "%installOO%"=="yes" (
+        powershell -Command "winget install OpenOffice.OpenOffice"
+    )
+    pause
+    goto menu
+)
+if %choice%==7 (
+    REM Download Aero Admin here
+    echo Downloading Aero Admin...
+    pause
+    goto menu
+)
+if %choice%==8 (
+    mkdir "%USERPROFILE%\Desktop\HCS Tools"
+    pause
+    goto menu
+)
+if %choice%==9 (
+    move "%PROGRAMFILES%\Mozilla Firefox" "%USERPROFILE%\Desktop\HCS Tools"
+    move "%PROGRAMFILES%\Adobe" "%USERPROFILE%\Desktop\HCS Tools"
+    move "%PROGRAMFILES%\Malwarebytes" "%USERPROFILE%\Desktop\HCS Tools"
+    move "%PROGRAMFILES%\CCleaner" "%USERPROFILE%\Desktop\HCS Tools"
+    move "%PROGRAMFILES%\VideoLAN" "%USERPROFILE%\Desktop\HCS Tools"
+    if /i "%installOO%"=="yes" (
+        move "%PROGRAMFILES%\OpenOffice" "%USERPROFILE%\Desktop\HCS Tools"
+    )
+    pause
+    goto menu
+)
+if %choice%==10 (
+    ren "%USERPROFILE%\Desktop\HCS Tools\aeroadmin.exe" "Call HCS 4 Help (360)379-4865.exe"
+    pause
+    goto menu
+)
+if %choice%==11 (
+    REM Create a restore point here (This may require administrative privileges)
+    echo Creating a restore point...
+    pause
+    goto menu
+)
+if %choice%==12 exit
+
+goto 
+menu
